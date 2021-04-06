@@ -38,7 +38,7 @@
                 <!-- <div class="row"> -->
                     <div class="col-lg-7 mt-n5 mb-0">
                         <h1 class="text-white mb-4">Merental mobil kini menjadi lebih mudah!</h1>
-                        <h5 class="text-white mb-4">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Praesentium, mollitia. Numquam, officia.</h5>
+                        <h5 class="text-white mb-4">Kita memiliki bermacam - macam jenis mobil untuk anda pilih</h5>
                         <a href="cars.html"><button type="button" class="btn btn-primary py-2 px-4 mt-2">Sewa Sekarang</button></a>
                     </div>
                 <!-- </div> -->
@@ -99,36 +99,36 @@
 					</div>
 					<div class="row">
 						<div class="form-group col-md-3">
-                        <span class="text-primary">32</span> <label for="cf-1">Honda</label>
+                        <span class="text-primary">10</span> <label for="cf-1">Honda</label>
 							<!-- <input type="text" id="cf-1" placeholder="Your pickup address" class="form-control"> -->
 						</div>
 						<div class="form-group col-md-3">
-                        <span class="text-primary">32</span> <label for="cf-2">Toyota</label>
+                        <span class="text-primary">05</span> <label for="cf-2">Toyota</label>
 							<!-- <input type="text" id="cf-2" placeholder="Your drop-off address" class="form-control"> -->
 						</div>
 						<div class="form-group col-md-3">
-                            <span class="text-primary">32</span> <label for="cf-3">Mitsubishi</label>
+                            <span class="text-primary">05</span> <label for="cf-3">Mitsubishi</label>
 							<!-- <input type="text" id="cf-3" placeholder="Your pickup address"
 								class="form-control datepicker px-3"> -->
 						</div>
 						<div class="form-group col-md-3">
-                            <span class="text-primary">32</span> <label for="cf-4">Daihatsu</label>
+                            <span class="text-primary">05</span> <label for="cf-4">Daihatsu</label>
 							<!-- <input type="text" id="cf-4" placeholder="Your pickup address"
 								class="form-control datepicker px-3"> -->
 						</div>
 					</div>
 					<div class="row">
 						<div class="form-group col-md-3">
-                            <span class="text-primary">32</span> <label for="cf-1">Mercedez Benz</label>
+                            <span class="text-primary">01</span> <label for="cf-1">Mercedez Benz</label>
 						</div>
 						<div class="form-group col-md-3">
-                            <span class="text-primary">32</span> <label for="cf-2">BMW</label>
+                            <span class="text-primary">02</span> <label for="cf-2">BMW</label>
 						</div>
 						<div class="form-group col-md-3">
-                            <span class="text-primary">32</span> <label for="cf-3">Nissan</label>
+                            <span class="text-primary">02</span> <label for="cf-3">Nissan</label>
 						</div>
 						<div class="form-group col-md-3">
-                            <span class="text-primary">32</span> <label for="cf-4">Bugatti</label>
+                            <span class="text-primary">02</span> <label for="cf-4">Audi</label>
 						</div>
 					</div>
 					<div class="row">
@@ -148,8 +148,7 @@
 		<div class="row">
 			<div class="col-lg-3">
 				<h3>Terpopuler</h3>
-				<p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure nesciunt nemo vel earum
-					maxime neque!</p>
+				<p class="mb-4">Mobil yang sering dipesan dengan rating yang memuaskan</p>
 				<p>
 					<a href="#" class="btn btn-primary custom-prev"><</a>
 					<span class="mx-2">/</span>
@@ -162,7 +161,7 @@
 						<a href="#"><img src="<?= base_url('assets/');?>images/img_1.jpg" alt="Image" class="img-fluid"></a>
 						<div class="item-1-contents">
 							<div class="text-center">
-								<h3><a href="#">Range Rover S64 Coupe</a></h3>
+								<h3><a href="#">Audi RS7</a></h3>
 								<div class="rating">
 									<span class="icon-star text-warning"></span>
 									<span class="icon-star text-warning"></span>
@@ -170,7 +169,7 @@
 									<span class="icon-star text-warning"></span>
 									<span class="icon-star text-warning"></span>
 								</div>
-								<div class="rent-price"><span>Rp250.000/</span>hari</div>
+								<div class="rent-price"><span>Rp500.000/</span>hari</div>
 							</div>
 							<ul class="specs">
 								<li>
@@ -200,7 +199,7 @@
 						<a href="#"><img src="<?= base_url('assets/');?>images/img_2.jpg" alt="Image" class="img-fluid"></a>
 						<div class="item-1-contents">
 							<div class="text-center">
-								<h3><a href="#">Range Rover S64 Coupe</a></h3>
+								<h3><a href="#">BMW M2</a></h3>
 								<div class="rating">
 									<span class="icon-star text-warning"></span>
 									<span class="icon-star text-warning"></span>
@@ -208,16 +207,16 @@
 									<span class="icon-star text-warning"></span>
 									<span class="icon-star text-warning"></span>
 								</div>
-								<div class="rent-price"><span>Rp500.000/</span>hari</div>
+								<div class="rent-price"><span>Rp250.000/</span>hari</div>
 							</div>
 							<ul class="specs">
 								<li>
 									<span>Doors</span>
-									<span class="spec">4</span>
+									<span class="spec">2</span>
 								</li>
 								<li>
 									<span>Seats</span>
-									<span class="spec">5</span>
+									<span class="spec">2</span>
 								</li>
 								<li>
 									<span>Transmission</span>
@@ -257,7 +256,7 @@
 					</span>
 					<div class="service-1-contents">
 						<h3>Repair</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati, laboriosam.</p>
+						<p>Mobil selalu kami perbaiki dan dalam keadaan baik</p>
 					</div>
 				</div>
 			</div>
@@ -268,7 +267,7 @@
 					</span>
 					<div class="service-1-contents">
 						<h3>Car Accessories</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati, laboriosam.</p>
+						<p>Mobil kami memiliki aksesoris yang dapat membantu perjalanan anda</p>
 					</div>
 				</div>
 			</div>
@@ -279,7 +278,7 @@
 					</span>
 					<div class="service-1-contents">
 						<h3>Own a Car</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati, laboriosam.</p>
+						<p>Mobil sudah tersertivikasi milik perusahaan kami</p>
 					</div>
 				</div>
 			</div>
@@ -292,22 +291,21 @@
 	<div class="row justify-content-center text-center">
 		<div class="col-7 text-center mb-5">
 			<h2>Langkah Penyewaan</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo assumenda, dolorum necessitatibus eius
-				earum voluptates sed!</p>
+			<p>Langkah - langkah yang harus anda lakukan untuk menyewa mobil</p>
 		</div>
 	</div>
 	<div class="how-it-works d-flex">
 		<div class="step">
 			<span class="number"><span>01</span></span>
-			<span class="caption">Time &amp; Place</span>
+			<span class="caption">Pilih Waktu &amp; Mobil</span>
 		</div>
 		<div class="step">
 			<span class="number"><span>02</span></span>
-			<span class="caption">Car</span>
+			<span class="caption">Bayar DP</span>
 		</div>
 		<div class="step">
 			<span class="number"><span>03</span></span>
-			<span class="caption">Details</span>
+			<span class="caption">Datang ke Kantor</span>
 		</div>
 		<div class="step">
 			<span class="number"><span>04</span></span>
@@ -315,7 +313,7 @@
 		</div>
 		<div class="step">
 			<span class="number"><span>05</span></span>
-			<span class="caption">Done</span>
+			<span class="caption">Selesai</span>
 		</div>
 
 	</div>
@@ -327,44 +325,40 @@
 		<div class="row justify-content-center text-center mb-5">
 			<div class="col-7 text-center mb-5">
 				<h2>Testimoni Pelanggan</h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo assumenda, dolorum necessitatibus eius
-					earum voluptates sed!</p>
+				<p>Testimoni pelanggan - pelanggan kami yang sudah pernah menyewa mobil pada perusahaan kami</p>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-lg-4 mb-4 mb-lg-0">
 				<div class="testimonial-2">
 					<blockquote class="mb-4">
-						<p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, deserunt eveniet
-							veniam. Ipsam, nam, voluptatum"</p>
+						<p>"Mobilnya bagus, aksesoris yang disediakan juga lengkap, saya acungkan seribu jempol untuk pak Amin"</p>
 					</blockquote>
 					<div class="d-flex v-card align-items-center">
 						<img src="<?= base_url('assets/');?>images/person_1.jpg" alt="Image" class="img-fluid mr-3">
-						<span>Mike Fisher</span>
+						<span>Mahmud Mike</span>
 					</div>
 				</div>
 			</div>
 			<div class="col-lg-4 mb-4 mb-lg-0">
 				<div class="testimonial-2">
 					<blockquote class="mb-4">
-						<p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, deserunt eveniet
-							veniam. Ipsam, nam, voluptatum"</p>
+						<p>"Ketika mobil ku gas, musuh manalagi yang bakal cemas. ANJAY PRI PAYER PAPALE PAPALE"</p>
 					</blockquote>
 					<div class="d-flex v-card align-items-center">
 						<img src="<?= base_url('assets/');?>images/person_2.jpg" alt="Image" class="img-fluid mr-3">
-						<span>Jean Stanley</span>
+						<span>Ahmad Stanley</span>
 					</div>
 				</div>
 			</div>
 			<div class="col-lg-4 mb-4 mb-lg-0">
 				<div class="testimonial-2">
 					<blockquote class="mb-4">
-						<p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, deserunt eveniet
-							veniam. Ipsam, nam, voluptatum"</p>
+						<p>"Terima kasih, dengan meminjam mobil disini saya bisa menipu mertua saya kalau saya kaya"</p>
 					</blockquote>
 					<div class="d-flex v-card align-items-center">
 						<img src="<?= base_url('assets/');?>images/person_3.jpg" alt="Image" class="img-fluid mr-3">
-						<span>Katie Rose</span>
+						<span>Mawar Rose</span>
 					</div>
 				</div>
 			</div>
