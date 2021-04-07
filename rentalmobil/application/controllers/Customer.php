@@ -18,13 +18,12 @@ class Customer extends CI_Controller
     public function index()
     {
         $data['appname'] = 'Rental Mobil';
-        $data['title'] = 'Home';
+        $data['title'] = 'Beranda';
         $data['customer'] = $this->db->get_where('customer',
         ['email' => $this->session->userdata('email')])->row_array();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar_customer', $data);
-        // $this->load->view('templates/slider', $data);
         $this->load->view('customer/index', $data);
         $this->load->view('templates/footer', $data);
     }
@@ -38,8 +37,7 @@ class Customer extends CI_Controller
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar_customer', $data);
-        $this->load->view('templates/slider', $data);
-        $this->load->view('customer/obat', $data);
+        $this->load->view('customer/mobil', $data);
         $this->load->view('templates/footer', $data);
     }
 

@@ -3,9 +3,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_auth_customer extends CI_Model
 {
-    public function getUser($username)
+    public function getCustomer($email)
     {
-        return $this->db->get_where('user', ['username' => $username])->row_array();
+        return $this->db->get_where('customer', ['email' => $email])->row_array();
     }
 
     public function getObatCount()
@@ -29,7 +29,7 @@ class M_auth_customer extends CI_Model
 
     public function getPemesananNotConfirmed()
     {
-        $this->db->join('user','user.id_user = pemesanan.id_user','LEFT OUTER');
+        $this->db->join('customer','customer.id_customer = pemesanan.id_customer','LEFT OUTER');
         $this->db->where('status', '0');
         return $this->db->get('pemesanan')->result_array();
     }
@@ -72,10 +72,10 @@ class M_auth_customer extends CI_Model
         $this->db->insert('user', $data);
     }
 
-    public function getProfile($username)
+    public function getProfile($email)
     {
         $this->db->join('user_role','user_role.role_id=user.role_id','LEFT OUTER');
-        $this->db->where('username', $username);
-        return $this->db->get('user')->row_array();
+        $this->db->where('email', $email);
+        return $this->db->get('customer')->row_array();
     }
 }

@@ -1,7 +1,7 @@
 
 <!-- CTA -->
 <div class="ftco-blocks-cover-1">
-	<div class="ftco-cover-1 overlay" style="background-image: url('<?= base_url('assets/');?>images/car1.jpg')">
+	<div class="ftco-cover-1 overlay" style="background-image: url('<?= base_url('assets/');?>images/car3.jpg')">
 		<div class="container">
 			<div class="row align-items-center">
 				<!-- <div class="col-lg-5">
@@ -38,8 +38,9 @@
                 <!-- <div class="row"> -->
                     <div class="col-lg-7 mt-n5 mb-0">
                         <h1 class="text-white mb-4">Merental mobil kini menjadi lebih mudah!</h1>
-                        <h5 class="text-white mb-4">Kita memiliki bermacam - macam jenis mobil untuk anda pilih</h5>
-                        <a href="cars.html"><button type="button" class="btn btn-primary py-2 px-4 mt-2">Sewa Sekarang</button></a>
+                        <h6 class="text-white mb-4">Kesulitan merental mobil? Tenang saja, dengan syarat yang mudah Anda sudah mulai <br>
+                        dapat merasakan sensasi berkendara. Tunggu apa lagi? Mulailah sekarang!</h6>
+                        <a href="<?= base_url('authCustomer/register'); ?>"><button type="button" class="btn btn-primary py-2 px-4 mt-2">Mulai Sekarang</button></a>
                     </div>
                 <!-- </div> -->
                 <!-- <div class="row">
@@ -133,7 +134,8 @@
 					</div>
 					<div class="row">
 						<div class="col-lg-6">
-							<input type="submit" value="Lihat lebih detail" class="btn btn-primary">
+							<!-- <a href="<?= base_url('authCustomer/register'); ?>"><button type="button" class="btn btn-primary py-2 px-4 mt-2">Mulai Sekarang</button></a> -->
+							<a href="<?= base_url('customer/mobil');?>"><button type="button" class="btn btn-primary">Lihat lebih detail</button></a>
 						</div>
 					</div>
 				</form>
@@ -148,7 +150,7 @@
 		<div class="row">
 			<div class="col-lg-3">
 				<h3>Terpopuler</h3>
-				<p class="mb-4">Mobil yang sering dipesan dengan rating yang memuaskan</p>
+				<p class="mb-4">Berikut beberapa mobil yang paling sering disewa oleh setiap pelanggan kami</p>
 				<p>
 					<a href="#" class="btn btn-primary custom-prev"><</a>
 					<span class="mx-2">/</span>
@@ -255,8 +257,8 @@
 						<span class="flaticon-car-1"></span>
 					</span>
 					<div class="service-1-contents">
-						<h3>Repair</h3>
-						<p>Mobil selalu kami perbaiki dan dalam keadaan baik</p>
+						<h3>Performa Baik</h3>
+						<p>Kami dapat pastikan bahwa mobil yang kami sewakan selalu dalam performa terbaik</p>
 					</div>
 				</div>
 			</div>
@@ -266,8 +268,8 @@
 						<span class="flaticon-traffic"></span>
 					</span>
 					<div class="service-1-contents">
-						<h3>Car Accessories</h3>
-						<p>Mobil kami memiliki aksesoris yang dapat membantu perjalanan anda</p>
+						<h3>Persyaratan Mudah</h3>
+						<p>Dengan persyaratan yang mudah, Anda dapat menyewa mobil dari kami dengan lebih enak</p>
 					</div>
 				</div>
 			</div>
@@ -277,8 +279,8 @@
 						<span class="flaticon-valet"></span>
 					</span>
 					<div class="service-1-contents">
-						<h3>Own a Car</h3>
-						<p>Mobil sudah tersertivikasi milik perusahaan kami</p>
+						<h3>Lepas Kunci</h3>
+						<p>Demi kenyamanan Anda, mobil yang disewakan dapat kami berikan kuncinya kepada Anda</p>
 					</div>
 				</div>
 			</div>
@@ -291,7 +293,7 @@
 	<div class="row justify-content-center text-center">
 		<div class="col-7 text-center mb-5">
 			<h2>Langkah Penyewaan</h2>
-			<p>Langkah - langkah yang harus anda lakukan untuk menyewa mobil</p>
+			<p>Berikut merupakan beberapa langkah yang akan Anda lakukan untuk dapat mulai merental mobil</p>
 		</div>
 	</div>
 	<div class="how-it-works d-flex">
@@ -325,7 +327,7 @@
 		<div class="row justify-content-center text-center mb-5">
 			<div class="col-7 text-center mb-5">
 				<h2>Testimoni Pelanggan</h2>
-				<p>Testimoni pelanggan - pelanggan kami yang sudah pernah menyewa mobil pada perusahaan kami</p>
+				<p>Berikut kata mereka yang sudah pernah menyewa mobil pada perusahaan kami</p>
 			</div>
 		</div>
 		<div class="row">

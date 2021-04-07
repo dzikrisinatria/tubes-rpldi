@@ -19,11 +19,12 @@ class AuthCustomer extends CI_Controller
         $this->form_validation->set_rules('password', 'Password', 'trim|required');
 
         if ( $this->form_validation->run() == FALSE ){
-            $data['appname'] = 'Rental Mobil App';
-            $data['title'] = 'Login';
-            $this->load->view('templates/auth_header', $data);
+            $data['appname'] = 'Rental Mobil';
+            $data['title'] = 'Masuk';
+            $this->load->view('templates/header', $data);
             $this->load->view('templates/navbar_customer', $data);
-            $this->load->view('auth/login', $data);
+            $this->load->view('auth/login_customer', $data);
+            $this->load->view('templates/footer', $data);
         } else {
             $this->_login();
         }
@@ -34,43 +35,33 @@ class AuthCustomer extends CI_Controller
         $email = $this->input->post('email');
         $password = $this->input->post('password');
 
-        $user = $this->m_auth->getUser($email);
+        $customer = $this->m_auth_customer->getCustomer($email);
         
-        // jika usernya ada
-        if ( $user ){
-            if ( $user['role_id'] == 0 ){
+        // jika customernya ada
+        if ( $customer ){
+            if ( $customer['status'] == 0 ){
                 $this->session->set_flashdata('message', '<div class="alert alert-danger " role="alert">
                 Akun Anda sudah tidak aktif!</div>');
-                redirect('auth');
+                redirect('authCustomer');
             }
             // cek password
-            if ( password_verify($password, $user['password']) ){
+            if ( password_verify($password, $customer['password']) ){
                 $data = [
-                    'email' => $user['email'],
-                    'role_id' => $user['role_id']
+                    'email' => $customer['email']
                 ];
                 $this->session->set_userdata($data);
-                
-                //cek role id
-                if ( $user['role_id'] == 1 ){
-                    redirect('admin');
-                } else if ( $user['role_id'] == 2 ){
-                    redirect('apoteker');
-                } else if ( $user['role_id'] == 3 ){
-                    redirect('customer');
-                }
 
             } else{
 
                 $this->session->set_flashdata('message', '<div class="alert alert-danger " role="alert">
                 Password Salah!</div>');
-                redirect('auth');
+                redirect('authCustomer');
 
             }
         } else{
             $this->session->set_flashdata('message', '<div class="alert alert-danger " role="alert">
             email belum terdaftar.</div>');
-            redirect('auth');
+            redirect('authCustomer');
         }
     }
 
@@ -84,25 +75,26 @@ class AuthCustomer extends CI_Controller
             'is_unique' => 'Email ini telah terdaftar!'
             ]);
         
-        $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[4]|matches[password2]', [
+        $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[5]|matches[password2]', [
             'matches' => "Password tidak sama",
-            'min_length' => "Password minimal 4 karakter."
+            'min_length' => "Password minimal 5 karakter."
         ]);
         $this->form_validation->set_rules('password2', 'Password', 'required|trim|matches[password]');
 
         $this->form_validation->set_rules('nama', 'Nama Lengkap', 'required|trim|min_length[3]');
-        $this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required|trim');
-        $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
+        // $this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required|trim');
+        // $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
         // $this->form_validation->set_rules('tgl_lahir', 'Tanggal Lahir', 'required|trim');
-        $this->form_validation->set_rules('no_hp', 'Nomor HP', 'required|trim|min_length[10]|numeric');
+        // $this->form_validation->set_rules('no_hp', 'Nomor HP', 'required|trim|min_length[10]|numeric');
             
         if ( $this->form_validation->run() == FALSE ){
             // echo "gamasuk"; die;
-            $data['appname'] = 'Obat Online App';
+            $data['appname'] = 'Rental Mobil';
             $data['title'] = 'Daftar';
-            $this->load->view('templates/auth_header', $data);
+            $this->load->view('templates/header', $data);
             $this->load->view('templates/navbar_customer', $data);
-            $this->load->view('auth/register');
+            $this->load->view('auth/register_customer');
+            $this->load->view('templates/footer', $data);
 
         } else {
             
@@ -120,7 +112,7 @@ class AuthCustomer extends CI_Controller
                 if ($this->upload->do_upload('foto')){ //jika berhasil upload
                     //upload gambar yg baru
                     $new_image = $this->upload->data('file_name');
-                    $this->m_auth->regdata($new_image);
+                    $this->m_auth_customer->regdata($new_image);
 
                 } else{
                     //menampilkan pesan error khusus upload
@@ -129,7 +121,7 @@ class AuthCustomer extends CI_Controller
                     redirect('auth/register');
                 }
             } else{
-                $this->m_auth->regdata2();
+                $this->m_auth_customer->regdata2();
             }
 
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
@@ -155,11 +147,11 @@ class AuthCustomer extends CI_Controller
 
     public function profile()
     {
-        $data['appname'] = 'Obat Online App';
+        $data['appname'] = 'Rental Mobil';
         $data['title'] = 'Profil Saya';
 
         $username = $this->session->userdata('username');
-        $data['user'] = $this->m_auth->getProfile($username);
+        $data['user'] = $this->m_auth_customer->getProfile($username);
 
         $this->load->view('templates/header', $data);
         if ($data['user']['role_id'] == 1){
