@@ -37,45 +37,32 @@ class M_auth_customer extends CI_Model
     public function regdata($new_image)
     {
         $data = [
-            'nama'          => htmlspecialchars($this->input->post('nama', true)),
             'email'         => htmlspecialchars($this->input->post('email', true)),
-            'username'      => htmlspecialchars($this->input->post('username', true)),
             'password'      => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
-            'jenis_kelamin' => $this->input->post('jenis_kelamin'),
-            'tgl_lahir'     => $this->input->post('tgl_lahir'),
-            'alamat'        => $this->input->post('alamat'),
-            'telepon'       => $this->input->post('telepon'),
-            'foto'          => $new_image,
-            'role_id'       => 3,
-            'date_created'  => time()
+            'nama'          => htmlspecialchars($this->input->post('nama', true)),
+            'status'        => 2,
         ];
 
-        $this->db->insert('user', $data);
+        $this->db->insert('customer', $data);
     }
 
     public function regdata2()
     {
         $data = [
-            'nama'          => htmlspecialchars($this->input->post('nama', true)),
+            'id_customer'   => random_string('alnum', 5),
             'email'         => htmlspecialchars($this->input->post('email', true)),
-            'username'      => htmlspecialchars($this->input->post('username', true)),
             'password'      => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
-            'jenis_kelamin' => $this->input->post('jenis_kelamin'),
-            'tgl_lahir'     => $this->input->post('tgl_lahir'),
-            'alamat'        => $this->input->post('alamat'),
-            'telepon'       => $this->input->post('telepon'),
-            'foto'          => 'default.jpg',
-            'role_id'       => 3,
-            'date_created'  => time()
+            'nama'          => htmlspecialchars($this->input->post('nama', true)),
+            'status'        => 2,
         ];
 
-        $this->db->insert('user', $data);
+        $this->db->insert('customer', $data);
     }
 
-    public function getProfile($email)
-    {
-        $this->db->join('user_role','user_role.role_id=user.role_id','LEFT OUTER');
-        $this->db->where('email', $email);
-        return $this->db->get('customer')->row_array();
-    }
+    // public function getProfile($email)
+    // {
+    //     $this->db->join('user_role','user_role.role_id=user.role_id','LEFT OUTER');
+    //     $this->db->where('email', $email);
+    //     return $this->db->get('customer')->row_array();
+    // }
 }

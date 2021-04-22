@@ -50,6 +50,8 @@ class AuthCustomer extends CI_Controller
                     'email' => $customer['email']
                 ];
                 $this->session->set_userdata($data);
+                // echo "gamasuk"; die;
+                redirect('customer');
 
             } else{
 
@@ -60,7 +62,7 @@ class AuthCustomer extends CI_Controller
             }
         } else{
             $this->session->set_flashdata('message', '<div class="alert alert-danger " role="alert">
-            email belum terdaftar.</div>');
+            Email tersebut belum terdaftar.</div>');
             redirect('authCustomer');
         }
     }
@@ -71,17 +73,23 @@ class AuthCustomer extends CI_Controller
             redirect('customer');
         }
         
-        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]', [
-            'is_unique' => 'Email ini telah terdaftar!'
+        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[customer.email]', [
+            'required' => 'Kolom Email harus diisi.',
+            'is_unique' => 'Email ini telah terdaftar!',
             ]);
         
         $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[5]|matches[password2]', [
             'matches' => "Password tidak sama",
+            'required' => 'Kolom Password harus diisi.',
             'min_length' => "Password minimal 5 karakter."
         ]);
+            
         $this->form_validation->set_rules('password2', 'Password', 'required|trim|matches[password]');
 
-        $this->form_validation->set_rules('nama', 'Nama Lengkap', 'required|trim|min_length[3]');
+        $this->form_validation->set_rules('nama', 'Nama Lengkap', 'required|trim|min_length[3]', [
+            'required' => 'Kolom Nama harus diisi.',
+            'min_length' => "Nama Lengkap minimal 3 karakter."
+        ]);
         // $this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required|trim');
         // $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
         // $this->form_validation->set_rules('tgl_lahir', 'Tanggal Lahir', 'required|trim');
@@ -99,41 +107,41 @@ class AuthCustomer extends CI_Controller
         } else {
             
             //cek jika ada gambar yang akan diupload
-            $upload_image = $_FILES['foto']['name'];
+            // $upload_image = $_FILES['foto']['name'];
 
-            if ($upload_image){
+            // if ($upload_image){
                 
-                $config['upload_path']          = './assets/img/profile/';
-                $config['allowed_types']        = 'gif|jpg|png';
-                $config['max_size']             = 2048;
+            //     $config['upload_path']          = './assets/img/profile/';
+            //     $config['allowed_types']        = 'gif|jpg|png';
+            //     $config['max_size']             = 2048;
 
-                $this->load->library('upload', $config);
+            //     $this->load->library('upload', $config);
 
-                if ($this->upload->do_upload('foto')){ //jika berhasil upload
-                    //upload gambar yg baru
-                    $new_image = $this->upload->data('file_name');
-                    $this->m_auth_customer->regdata($new_image);
+            //     if ($this->upload->do_upload('foto')){ //jika berhasil upload
+            //         //upload gambar yg baru
+            //         $new_image = $this->upload->data('file_name');
+            //         $this->m_auth_customer->regdata($new_image);
 
-                } else{
-                    //menampilkan pesan error khusus upload
-                    $this->session->set_flashdata('message', '<small class="text-danger">' . 
-                    $this->upload->display_errors() . '</small>');
-                    redirect('auth/register');
-                }
-            } else{
+            //     } else{
+            //         //menampilkan pesan error khusus upload
+            //         $this->session->set_flashdata('message', '<small class="text-danger">' . 
+            //         $this->upload->display_errors() . '</small>');
+            //         redirect('auth/register');
+            //     }
+            // } else{
                 $this->m_auth_customer->regdata2();
-            }
+            // }
 
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
             Akun Anda berhasil dibuat! Silahkan Login.</div>');
-            redirect('auth');
+            redirect('authCustomer');
         }
     }
 
     public function logout()
     {
         $this->session->unset_userdata('email');
-        $this->session->unset_userdata('keyword');
+        // $this->session->unset_userdata('keyword');
         // $this->session->sess_destroy();
         // $this->session->set_flashdata('message', '<div class="alert alert-success " role="alert">
         // Anda telah berhasil logout!</div>');

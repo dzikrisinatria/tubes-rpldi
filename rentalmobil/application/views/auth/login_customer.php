@@ -4,6 +4,9 @@
 			<div class="row align-items-center">
 				<div class="col-lg-5">
 					<div class="feature-car-rent-box-1">
+						
+						<?= $this->session->flashdata('message'); ?>
+
 						<h3>Selamat datang,</h3>
 						<h6>Silahkan masuk untuk melanjutkan</h6>
 						<form class="pt-3" action="" method="post">
@@ -28,7 +31,7 @@
 							<small class="text-dark d-flex align-items-center my-1 justify-content-center">atau</small>
 							<div class="form-group row">
 								<div class="col d-flex align-items-center">
-									<input type="button" class="border-dark btn btn-outline-dark" style="width:100%;"
+									<input type="button" class="border-primary btn btn-outline-primary" style="width:100%;"
 									onclick="location.href='<?= base_url('authCustomer/register'); ?>';" value="Daftar">
 								</div>
 							</div>
