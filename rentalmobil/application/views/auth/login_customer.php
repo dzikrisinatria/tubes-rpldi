@@ -13,14 +13,14 @@
 							<div class="form-group row">
 								<div class="form-group col">
 									<label for="cf-1">Email</label>
-									<input type="text" id="cf-1" placeholder="email@email.com" class="form-control">
+									<input name="email" type="text" id="cf-1" placeholder="email@email.com" class="form-control">
 								</div>
 							</div>
 							<div class="form-group row mt-n2">
 								<div class="form-group col">
 									<label for="cf-2">Password</label>
 									<input type="password" id="cf-2" placeholder="Password"
-										class="form-control">
+										name="password" class="form-control">
 								</div>
 							</div>
 							<div class="form-group row mb-0">

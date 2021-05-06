@@ -12,13 +12,13 @@
 	<div class="container">
 		<div class="row align-items-center position-relative">
 
-			<div class="col-3 ">
+			<div class="col-4 ">
 				<div class="site-logo">
 					<a href="index.html"><span class="icon-car text-white pr-2"></span> <?= $appname; ?></a>
 				</div>
 			</div>
 
-			<div class="col-9  text-right">
+			<div class="col  text-right">
 				<span class="d-inline-block d-lg-none"><a href="#"
 						class="text-white site-menu-toggle js-menu-toggle py-5 text-white"><span
 							class="icon-menu h3 text-white"></span></a></span>
@@ -47,7 +47,7 @@
                                     <a class="dropdown-item" href="<?= base_url('customer/profile'); ?>">Akun Saya</a>
                                     <a class="dropdown-item" href="<?= base_url('customer/profile'); ?>">Riwayat Transaksi</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="<?= base_url('auth/logout'); ?>">Keluar</a>
+                                    <a class="dropdown-item" href="<?= base_url('authCustomer/logout'); ?>">Keluar</a>
                                 </div>
                             </li>
                         <?php else : ?>

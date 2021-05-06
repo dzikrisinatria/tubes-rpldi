@@ -138,6 +138,77 @@ class AuthCustomer extends CI_Controller
         }
     }
 
+    public function register2()
+    {   
+        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[customer.email]', [
+            'required' => 'Kolom Email harus diisi.',
+            'is_unique' => 'Email ini telah terdaftar!',
+            ]);
+        
+        $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[5]|matches[password2]', [
+            'matches' => "Password tidak sama",
+            'required' => 'Kolom Password harus diisi.',
+            'min_length' => "Password minimal 5 karakter."
+        ]);
+            
+        $this->form_validation->set_rules('password2', 'Password', 'required|trim|matches[password]');
+
+        $this->form_validation->set_rules('nama', 'Nama Lengkap', 'required|trim|min_length[3]', [
+            'required' => 'Kolom Nama harus diisi.',
+            'min_length' => "Nama Lengkap minimal 3 karakter."
+        ]);
+        // $this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required|trim');
+        // $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim');
+        // $this->form_validation->set_rules('tgl_lahir', 'Tanggal Lahir', 'required|trim');
+        // $this->form_validation->set_rules('no_hp', 'Nomor HP', 'required|trim|min_length[10]|numeric');
+            
+        if ( $this->form_validation->run() == FALSE ){
+            // echo "gamasuk"; die;
+            $data['appname'] = 'Rental Mobil';
+            $data['title'] = 'Daftar';
+            
+            $email = $this->session->userdata('email');
+            $data['customer'] = $this->m_auth_customer->getCustomer($email);
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/navbar_customer', $data);
+            $this->load->view('auth/register2_customer');
+            $this->load->view('templates/footer', $data);
+
+        } else {
+            
+            //cek jika ada gambar yang akan diupload
+            // $upload_image = $_FILES['foto']['name'];
+
+            // if ($upload_image){
+                
+            //     $config['upload_path']          = './assets/img/profile/';
+            //     $config['allowed_types']        = 'gif|jpg|png';
+            //     $config['max_size']             = 2048;
+
+            //     $this->load->library('upload', $config);
+
+            //     if ($this->upload->do_upload('foto')){ //jika berhasil upload
+            //         //upload gambar yg baru
+            //         $new_image = $this->upload->data('file_name');
+            //         $this->m_auth_customer->regdata($new_image);
+
+            //     } else{
+            //         //menampilkan pesan error khusus upload
+            //         $this->session->set_flashdata('message', '<small class="text-danger">' . 
+            //         $this->upload->display_errors() . '</small>');
+            //         redirect('auth/register');
+            //     }
+            // } else{
+                $this->m_auth_customer->regdata2();
+            // }
+
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+            Akun Anda berhasil dibuat! Silahkan Login.</div>');
+            redirect('authCustomer');
+        }
+    }
+
     public function logout()
     {
         $this->session->unset_userdata('email');

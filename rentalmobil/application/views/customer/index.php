@@ -1,87 +1,119 @@
 
 <!-- CTA -->
-<div class="ftco-blocks-cover-1">
-	<div class="ftco-cover-1 overlay" style="background-image: url('<?= base_url('assets/');?>images/car3.jpg')">
-		<div class="container">
-			<div class="row align-items-center">
-				<!-- <div class="col-lg-5">
-					<div class="feature-car-rent-box-1">
-						<h3>Range Rover S7</h3>
-						<ul class="list-unstyled">
-							<li>
-								<span>Doors</span>
-								<span class="spec">4</span>
-							</li>
-							<li>
-								<span>Seats</span>
-								<span class="spec">6</span>
-							</li>
-							<li>
-								<span>Lugage</span>
-								<span class="spec">2 Suitcase/2 Bags</span>
-							</li>
-							<li>
-								<span>Transmission</span>
-								<span class="spec">Automatic</span>
-							</li>
-							<li>
-								<span>Minium age</span>
-								<span class="spec">Automatic</span>
-							</li>
-						</ul>
-						<div class="d-flex align-items-center bg-light p-3">
-							<span>$150/day</span>
-							<a href="contact.html" class="ml-auto btn btn-primary">Rent Now</a>
+<?php if ( !$this->session->userdata('email') ) :?>
+	<div class="ftco-blocks-cover-1">
+		<div class="ftco-cover-1 overlay" style="background-image: url('<?= base_url('assets/');?>images/car3.jpg')">
+			<div class="container">
+				<div class="row align-items-center">
+					<!-- <div class="col-lg-5">
+						<div class="feature-car-rent-box-1">
+							<h3>Range Rover S7</h3>
+							<ul class="list-unstyled">
+								<li>
+									<span>Doors</span>
+									<span class="spec">4</span>
+								</li>
+								<li>
+									<span>Seats</span>
+									<span class="spec">6</span>
+								</li>
+								<li>
+									<span>Lugage</span>
+									<span class="spec">2 Suitcase/2 Bags</span>
+								</li>
+								<li>
+									<span>Transmission</span>
+									<span class="spec">Automatic</span>
+								</li>
+								<li>
+									<span>Minium age</span>
+									<span class="spec">Automatic</span>
+								</li>
+							</ul>
+							<div class="d-flex align-items-center bg-light p-3">
+								<span>$150/day</span>
+								<a href="contact.html" class="ml-auto btn btn-primary">Rent Now</a>
+							</div>
 						</div>
-					</div>
-				</div> -->
-                <!-- <div class="row"> -->
-                    <div class="col-lg-7 mt-n5 mb-0">
-                        <h1 class="text-white mb-4">Merental mobil kini menjadi lebih mudah!</h1>
-                        <h6 class="text-white mb-4">Kesulitan merental mobil? Tenang saja, dengan syarat yang mudah Anda sudah mulai <br>
-                        dapat merasakan sensasi berkendara. Tunggu apa lagi? Mulailah sekarang!</h6>
-                        <a href="<?= base_url('authCustomer/register'); ?>"><button type="button" class="btn btn-primary py-2 px-4 mt-2">Mulai Sekarang</button></a>
-                    </div>
-                <!-- </div> -->
-                <!-- <div class="row">
-                    <div class="col-lg-4">
-                        <div class="service-1">
-                            <span class="service-1-icon">
-                                <span class="flaticon-car-1"></span>
-                            </span>
-                            <div class="service-1-contents">
-                                <h3>Repair</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati, laboriosam.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="service-1">
-                            <span class="service-1-icon">
-                                <span class="flaticon-traffic"></span>
-                            </span>
-                            <div class="service-1-contents">
-                                <h3>Car Accessories</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati, laboriosam.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="service-1">
-                            <span class="service-1-icon">
-                                <span class="flaticon-valet"></span>
-                            </span>
-                            <div class="service-1-contents">
-                                <h3>Own a Car</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati, laboriosam.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>        -->
+					</div> -->
+					<!-- <div class="row"> -->
+						<div class="col-lg-7 mt-n5 mb-0">
+							<h1 class="text-white mb-4">Merental mobil kini menjadi lebih mudah!</h1>
+							<h6 class="text-white mb-4">Kesulitan merental mobil? Tenang saja, dengan syarat yang mudah Anda sudah mulai <br>
+							dapat merasakan sensasi berkendara. Tunggu apa lagi? Mulailah sekarang!</h6>
+							<a href="<?= base_url('authCustomer/register'); ?>"><button type="button" class="btn btn-primary py-2 px-4 mt-2">Mulai Sekarang</button></a>
+						</div>
+					<!-- </div> -->
+					<!-- <div class="row">
+						<div class="col-lg-4">
+							<div class="service-1">
+								<span class="service-1-icon">
+									<span class="flaticon-car-1"></span>
+								</span>
+								<div class="service-1-contents">
+									<h3>Repair</h3>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati, laboriosam.</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4">
+							<div class="service-1">
+								<span class="service-1-icon">
+									<span class="flaticon-traffic"></span>
+								</span>
+								<div class="service-1-contents">
+									<h3>Car Accessories</h3>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati, laboriosam.</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4">
+							<div class="service-1">
+								<span class="service-1-icon">
+									<span class="flaticon-valet"></span>
+								</span>
+								<div class="service-1-contents">
+									<h3>Own a Car</h3>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati, laboriosam.</p>
+								</div>
+							</div>
+						</div>
+					</div>        -->
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
+<?php else : ?>
+	<?php if ($customer['status'] == 2) :?>
+		<div class="ftco-blocks-cover-1">
+			<div class="ftco-cover-1 overlay" style="background-image: url('<?= base_url('assets/');?>images/car3.jpg')">
+				<div class="container">
+					<div class="row align-items-center">
+						<div class="col-lg-7 mt-n5 mb-0">
+							<h1 class="text-white mb-4">Lengkapi data diri Anda, <br>dan mulailah berkendara!</h1>
+							<h6 class="text-white mb-4">Anda dapat mulai melengkapi data diri Anda dan melampirkan <br>dokumen-dokumen penting lainnya untuk dapat mulai berkendara.</h6>
+							<a href="<?= base_url('authCustomer/register2'); ?>"><button type="button" class="btn btn-primary py-2 px-4 mt-2">Lengkapi Sekarang</button></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<?php elseif ($customer['status'] == 1) : ?>
+		<div class="ftco-blocks-cover-1">
+			<div class="ftco-cover-1 overlay" style="background-image: url('<?= base_url('assets/');?>images/car3.jpg')">
+				<div class="container">
+					<div class="row align-items-center">
+						<div class="col-lg-7 mt-n5 mb-0">
+							<h1 class="text-white mb-4">Lengkapi data diri Anda, <br>dan mulailah berkendara!</h1>
+							<h6 class="text-white mb-4">Anda dapat mulai melengkapi data diri Anda dan melampirkan <br>dokumen-dokumen penting lainnya untuk dapat mulai berkendara.</h6>
+							<a href="<?= base_url('authCustomer/register'); ?>"><button type="button" class="btn btn-primary py-2 px-4 mt-2">Lengkapi Sekarang</button></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<?php endif; ?>
+<?php endif; ?>
 
 <!-- Stok Mobil -->
 <div class="site-section pt-0 pb-0 bg-light">
