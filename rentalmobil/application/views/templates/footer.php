@@ -82,7 +82,12 @@
 <script src="<?= base_url('assets/');?>js/aos.js"></script>
 
 <script src="<?= base_url('assets/');?>js/main.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
+<script>
+	$(document).ready(function () {
+		bsCustomFileInput.init()
+	})
+</script>
 </body>
 
 </html>

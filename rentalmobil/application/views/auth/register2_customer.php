@@ -21,13 +21,18 @@
 		</div>
 		<div class="row">
 			<div class="col-lg-8 mb-5">
-				<form action="#" method="post">
+				<?= $this->session->flashdata('message'); //pesan error khusus upload ?>
+
+				<?= form_open_multipart('authCustomer/register2');?>
+
 					<div class="form-group row flex align-items-center">
 						<div class="col-3">
 							<label for="name" class="form-label">Nama Lengkap</label>
 						</div>
 						<div class="col">
-							<input name="name" type="text" class="form-control" placeholder="Nama Lengkap">
+							<input name="name" type="text" class="form-control" placeholder="Nama Lengkap"
+							value="<?= $customer['nama']; ?>">
+							<?= form_error('name', '<small class="form-text text-danger">', '</small>'); ?>
 						</div>
 					</div>
 					
@@ -38,9 +43,10 @@
 						<div class="col">
 							<select name="jenis_kelamin" class="form-control" aria-label="" style="width:;">
 								<option selected disabled>Pilih</option>
-								<option value="0">Pria</option>
-								<option value="1">Wanita</option>
+								<option value="0" <?= set_value('jenis_kelamin') == '0' ? "selected" : ""; ?>>Pria</option>
+								<option value="1" <?= set_value('jenis_kelamin') == '1' ? "selected" : ""; ?>>Wanita</option>
 							</select>
+							<?= form_error('jenis_kelamin', '<small class="form-text text-danger">', '</small>'); ?>
 						</div>
 					</div>
 
@@ -49,8 +55,9 @@
 							<label for="alamat" class="form-label">Alamat Lengkap</label>
 						</div>
 						<div class="col">
-							<textarea name="alamat" id="" class="form-control" placeholder="Alamat" cols="30"
-								rows="3"></textarea>
+							<textarea name="alamat" id="alamat" class="form-control" placeholder="Alamat" cols="30"
+								rows="3"><?= set_value('alamat'); ?></textarea>
+							<?= form_error('alamat', '<small class="form-text text-danger">', '</small>'); ?>
 						</div>
 					</div>
 
@@ -59,7 +66,9 @@
 							<label for="nik" class="form-label">NIK</label>
 						</div>
 						<div class="col">
-							<input name="nik" type="text" class="form-control" placeholder="Nomor Induk Kependudukan">
+							<input name="nik" id="nik" type="text" class="form-control" placeholder="Nomor Induk Kependudukan"
+							value="<?= set_value('nik'); ?>">
+							<?= form_error('nik', '<small class="form-text text-danger">', '</small>'); ?>
 						</div>
 					</div>
 					
@@ -68,7 +77,9 @@
 							<label for="no_sim" class="form-label">Nomor SIM</label>
 						</div>
 						<div class="col">
-							<input name="no_sim" type="text" class="form-control" placeholder="Nomor SIM">
+							<input name="no_sim" type="text" class="form-control" placeholder="Nomor SIM"
+							value="<?= set_value('no_sim'); ?>">
+							<?= form_error('no_sim', '<small class="form-text text-danger">', '</small>'); ?>
 						</div>
 					</div>
 					
@@ -77,7 +88,9 @@
 							<label for="no_hp" class="form-label">Nomor HP</label>
 						</div>
 						<div class="col">
-							<input name="no_hp" type="text" class="form-control" placeholder="Nomor HP">
+							<input name="no_hp" type="text" class="form-control" placeholder="Nomor HP"
+							value="<?= set_value('no_hp'); ?>">
+							<?= form_error('no_hp', '<small class="form-text text-danger">', '</small>'); ?>
 						</div>
 					</div>
 					
@@ -91,8 +104,9 @@
 							<div class="custom-file">
 								<label class="custom-file-label" for="foto_kk">Pilih Foto Kartu Keluarga</label>
 								<input type="file" class="custom-file-input" id="foto_kk" name="foto_kk">
-								<?= $this->session->flashdata('message'); //pesan error khusus upload ?>
+								<?= $this->session->flashdata('err_kk'); //pesan error khusus upload ?>
 							</div>
+							<?= form_error('foto_kk', '<small class="form-text text-danger">', '</small>'); ?>
 						</div>
 					</div>
 					
@@ -104,8 +118,9 @@
 							<div class="custom-file">
 								<label class="custom-file-label" for="foto_ktp">Pilih Foto KTP</label>
 								<input type="file" class="custom-file-input" id="foto_ktp" name="foto_ktp">
-								<?= $this->session->flashdata('message'); //pesan error khusus upload ?>
+								<?= $this->session->flashdata('err_ktp'); //pesan error khusus upload ?>
 							</div>
+							<?= form_error('foto_ktp', '<small class="form-text text-danger">', '</small>'); ?>
 						</div>
 					</div>
 					
@@ -115,10 +130,25 @@
 						</div>
 						<div class="col">
 							<div class="custom-file">
-								<label class="custom-file-label" for="foto_selfie_ktp">Pilih Foto Selfie KTP</label>
 								<input type="file" class="custom-file-input" id="foto_selfie_ktp" name="foto_selfie_ktp">
-								<?= $this->session->flashdata('message'); //pesan error khusus upload ?>
+								<label class="custom-file-label" for="foto_selfie_ktp">Pilih Foto Selfie KTP</label>
+								<?= $this->session->flashdata('err_selfie'); //pesan error khusus upload ?>
 							</div>
+							<?= form_error('foto_selfie_ktp', '<small class="form-text text-danger">', '</small>'); ?>
+						</div>
+					</div>
+
+					<div class="form-group row flex align-items-center">
+						<div class="col-3">
+							<label for="foto_sim" class="form-label">Foto SIM</label>
+						</div>
+						<div class="col">
+							<div class="custom-file">
+								<label class="custom-file-label" for="foto_sim">Pilih Foto SIM</label>
+								<input type="file" class="custom-file-input" id="foto_sim" name="foto_sim">
+								<?= $this->session->flashdata('err_sim'); //pesan error khusus upload ?>
+							</div>
+							<?= form_error('foto_sim', '<small class="form-text text-danger">', '</small>'); ?>
 						</div>
 					</div>
 
@@ -127,8 +157,8 @@
 					<div class="form-group row">
 						<div class="col-3"></div>
 						<div class="col mr-auto">
-							<input type="submit" class="btn btn-block btn-primary text-white py-3 px-5"
-								value="Selesai">
+							<button type="submit" class="btn btn-block btn-primary text-white py-3 px-5">
+								Selesai</button>
 						</div>
 					</div>
 				</form>

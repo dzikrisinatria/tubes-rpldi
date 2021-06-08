@@ -84,7 +84,7 @@
 		</div>
 	</div>
 <?php else : ?>
-	<?php if ($customer['status'] == 2) :?>
+	<?php if ($customer['status'] == 3) :?>
 		<div class="ftco-blocks-cover-1">
 			<div class="ftco-cover-1 overlay" style="background-image: url('<?= base_url('assets/');?>images/car3.jpg')">
 				<div class="container">
@@ -98,15 +98,15 @@
 				</div>
 			</div>
 		</div>
-	<?php elseif ($customer['status'] == 1) : ?>
+	<?php elseif ($customer['status'] == 2) : ?>
 		<div class="ftco-blocks-cover-1">
-			<div class="ftco-cover-1 overlay" style="background-image: url('<?= base_url('assets/');?>images/car3.jpg')">
+			<div class="ftco-cover-1 overlay" style="background-image: url('<?= base_url('assets/');?>images/car2.jpg')">
 				<div class="container">
 					<div class="row align-items-center">
 						<div class="col-lg-7 mt-n5 mb-0">
-							<h1 class="text-white mb-4">Lengkapi data diri Anda, <br>dan mulailah berkendara!</h1>
-							<h6 class="text-white mb-4">Anda dapat mulai melengkapi data diri Anda dan melampirkan <br>dokumen-dokumen penting lainnya untuk dapat mulai berkendara.</h6>
-							<a href="<?= base_url('authCustomer/register'); ?>"><button type="button" class="btn btn-primary py-2 px-4 mt-2">Lengkapi Sekarang</button></a>
+							<h1 class="text-white mb-4">Selamat, Anda sudah dapat<br>memulai berkendara!</h1>
+							<h6 class="text-white mb-4">Anda dapat mulai merental mobil dengan membawa dokumen-dokumen<br> penting berbentuk fisik saat pertamakali mengambil mobil.</h6>
+							<a href="<?= base_url('authCustomer/register'); ?>"><button type="button" class="btn btn-primary py-2 px-4 mt-2">Mulai Berkendara</button></a>
 						</div>
 					</div>
 				</div>
@@ -339,7 +339,7 @@
 		</div>
 		<div class="step">
 			<span class="number"><span>03</span></span>
-			<span class="caption">Datang ke Kantor</span>
+			<span class="caption">Datang ke Tempat</span>
 		</div>
 		<div class="step">
 			<span class="number"><span>04</span></span>
