@@ -35,6 +35,8 @@ class Customer extends CI_Controller
         $data['customer'] = $this->db->get_where('customer',
         ['email' => $this->session->userdata('email')])->row_array();
 
+        $data['allMobil'] = $this->m_mobil->getAllMobil();
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar_customer', $data);
         $this->load->view('customer/mobil', $data);
@@ -55,17 +57,17 @@ class Customer extends CI_Controller
         $this->load->view('templates/footer', $data);
     }
 
-    public function kontak()
+    public function penyewaan()
     {
         $data['appname'] = 'Rental Mobil';
-        $data['title'] = 'Kontak Kami';
+        $data['title'] = 'Penyewaan';
 
-        $username = $this->session->userdata('email');
-        $data['user'] = $this->m_auth->getProfile($username);
+        $email = $this->session->userdata('email');
+        $data['customer'] = $this->m_customer->getCustomerByEmail()($email);
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar_customer', $data);
-        $this->load->view('customer/kontak', $data);
+        $this->load->view('customer/penyewaan', $data);
         $this->load->view('templates/footer', $data);
     }
 }

@@ -377,7 +377,7 @@
 			<div class="col-lg-4 mb-4 mb-lg-0">
 				<div class="testimonial-2">
 					<blockquote class="mb-4">
-						<p>"Ketika mobil ku gas, musuh manalagi yang bakal cemas. ANJAY PRI PAYER PAPALE PAPALE"</p>
+						<p>"Testimoni adalah adalah sebuah bentuk kesaksian atau review tentang barang atau jasa penjual dari pembeli."</p>
 					</blockquote>
 					<div class="d-flex v-card align-items-center">
 						<img src="<?= base_url('assets/');?>images/person_2.jpg" alt="Image" class="img-fluid mr-3">
@@ -388,7 +388,7 @@
 			<div class="col-lg-4 mb-4 mb-lg-0">
 				<div class="testimonial-2">
 					<blockquote class="mb-4">
-						<p>"Terima kasih, dengan meminjam mobil disini saya bisa menipu mertua saya kalau saya kaya"</p>
+						<p>"Testimoni adalah suatu pernyataan yang memberi kesaksian tentang kualifikasi seseorang, karakter, dsb."</p>
 					</blockquote>
 					<div class="d-flex v-card align-items-center">
 						<img src="<?= base_url('assets/');?>images/person_3.jpg" alt="Image" class="img-fluid mr-3">

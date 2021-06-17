@@ -3,90 +3,37 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_transaksi extends CI_Model
 {
-    public function getAlltransaksi()
+    public function getAllTransaksi()
     {
-        return $this->db->get('transaksi')->result_array();
-    }
-    
-    public function gettransaksiPagination($limit, $start, $keyword = null)
-    {
-        if ($keyword){
-            $this->caritransaksi($keyword);
-        }
-		$this->db->join('jenis_transaksi','jenis_transaksi.id_jenis_transaksi=transaksi.id_jenis_transaksi','LEFT OUTER');
-		$query = $this->db->get('transaksi', $limit, $start);
-        return $query->result_array();
-    }
-    
-    public function gettransaksiCustomerPagination($limit, $start, $keyword = null)
-    {
-        if ($keyword){
-            $this->caritransaksi($keyword);
-        }
-        $this->db->where('status', '1');
-		$this->db->join('jenis_transaksi','jenis_transaksi.id_jenis_transaksi=transaksi.id_jenis_transaksi','LEFT OUTER');
-		$query = $this->db->get('transaksi', $limit, $start);
-        return $query->result_array();
-    }
-    
-    public function getJenistransaksiPagination($limit, $start, $keyword = null)
-    {
-        if ($keyword){
-            $this->carijenis($keyword);
-        }
-		$query = $this->db->get('jenis_transaksi', $limit, $start);
-        return $query->result_array();
-    }
-
-    public function totalRowsPagination($keyword)
-    {
-        $this->caritransaksi($keyword);
-        $this->db->where('status', '1');
-        $this->db->join('jenis_transaksi','jenis_transaksi.id_jenis_transaksi=transaksi.id_jenis_transaksi','LEFT OUTER');
-        $this->db->from('transaksi');
-        return $this->db->count_all_results();
-    }
-    
-    public function totalRowsJenisPagination($keyword)
-    {
-        $this->carijenis($keyword);
-        $this->db->from('jenis_transaksi');
-        return $this->db->count_all_results();
-    }
-
-    public function gettransaksiById($id_transaksi)
-    {
-        $this->db->join('jenis_transaksi','jenis_transaksi.id_jenis_transaksi=transaksi.id_jenis_transaksi','LEFT OUTER');
-        $this->db->where('id_transaksi', $id_transaksi);
-        return $this->db->get('transaksi')->row_array();
-    }
-    
-    public function getJenisById($id_jenis_transaksi)
-    {
-        $this->db->where('id_jenis_transaksi', $id_jenis_transaksi);
-        return $this->db->get('jenis_transaksi')->row_array();
-    }
-
-    public function gettransaksiCountByJenis($id_jenis_transaksi)
-    {
-        $this->db->where('id_jenis_transaksi', $id_jenis_transaksi);
-        $this->db->from('transaksi');
-        return $this->db->count_all_results();
-    }
-
-    public function getAlltransaksiAndJenis()
-    {
-		$this->db->select('*');
+        $this->db->select('*');
 		$this->db->from('transaksi');
-		$this->db->join('jenis_transaksi','jenis_transaksi.id_jenis_transaksi=transaksi.id_jenis_transaksi','LEFT OUTER');
+		$this->db->join('pegawai','pegawai.id_pegawai=transaksi.id_pegawai','LEFT OUTER');
+		$this->db->join('customer','customer.id_customer=transaksi.id_customer','LEFT OUTER');
+		$this->db->join('metode_bayar','metode_bayar.id_metode_bayar=transaksi.id_metode_bayar','LEFT OUTER');
 		$query = $this->db->get();
 		return $query->result_array();
     }
+
+    public function getTransaksiById($id_transaksi)
+    {
+        $this->db->join('pegawai','pegawai.id_pegawai=transaksi.id_pegawai','LEFT OUTER');
+		$this->db->join('customer','customer.id_customer=transaksi.id_customer','LEFT OUTER');
+		$this->db->join('metode_bayar','metode_bayar.id_metode_bayar=transaksi.id_metode_bayar','LEFT OUTER');
+        $this->db->where('id_transaksi', $id_transaksi);
+        return $this->db->get('transaksi')->row_array();
+    }
+
+    public function getTransaksiCountByMetode($id_metode_bayar)
+    {
+        $this->db->where('id_metode_bayar', $id_metode_bayar);
+        $this->db->from('transaksi');
+        return $this->db->count_all_results();
+    }
     
-    public function getAllJenis()
+    public function getAllMetodeBayar()
     {
 		$this->db->select('*');
-		$this->db->from('jenis_transaksi');
+		$this->db->from('metode_bayar');
 		$query = $this->db->get();
 		return $query->result_array();
     }
@@ -94,41 +41,6 @@ class M_transaksi extends CI_Model
     public function countAlltransaksi()
     {
         return $this->db->get('transaksi')->num_rows();
-    }
-    
-    public function hapustransaksi($id_transaksi)
-    {
-        $this->db->where('id_transaksi', $id_transaksi);
-        return $this->db->delete('transaksi');
-    }
-
-    public function hapustransaksiboongan()
-    {
-        return $data = ['status'       => 0];
-    }
-
-     public function hapusJenistransaksi($id_jenis_transaksi)
-    {
-        $this->db->where('id_jenis_transaksi', $id_jenis_transaksi);
-        return $this->db->delete('jenis_transaksi');
-    }
-
-    public function caritransaksi($keyword)
-    {
-        $this->db->like('kode_transaksi', $keyword);
-        $this->db->or_like('nama_transaksi', $keyword);
-        $this->db->or_like('harga', $keyword);
-        $this->db->or_like('stok', $keyword);
-        $this->db->or_like('bentuk', $keyword);
-        $this->db->or_like('fungsi', $keyword);
-        $this->db->or_like('aturan', $keyword);
-        $this->db->or_like('nama_jenis', $keyword);
-    }
-    
-    public function carijenis($keyword)
-    {
-        $this->db->like('id_jenis_transaksi', $keyword);
-        $this->db->or_like('nama_jenis', $keyword);
     }
 
     public function editdatatransaksi($new_image)
@@ -164,21 +76,37 @@ class M_transaksi extends CI_Model
         $this->db->insert('transaksi', $data);
     }
 
-    public function adddatajenistransaksi()
+    public function getMetodeBayarById($id_metode_bayar)
     {
-        $data = [
-            'id_jenis_transaksi' => $this->input->post('id_jenis_transaksi'),
-            'nama_jenis' => $this->input->post('nama_jenis')
-        ];
-        $this->db->insert('jenis_transaksi', $data);
+        $this->db->where('id_metode_bayar', $id_metode_bayar);
+        return $this->db->get('metode_bayar')->row_array();
     }
 
-    public function editdatajenistransaksi()
+    public function tambahMetodeBayar()
     {
-        return $data = [
-            'id_jenis_transaksi' => $this->input->post('id_jenis_transaksi'),
-            'nama_jenis' => $this->input->post('nama_jenis')
-        ];
+        $data = ['metode_pembayaran' => $this->input->post('metode_pembayaran')];
+        $this->db->insert('metode_bayar', $data);
+    }
+
+    public function nonaktifkanMetodeBayar($id_metode_bayar)
+    {
+        $this->db->set('status_metode', 0);
+        $this->db->where('id_metode_bayar', $id_metode_bayar);
+        $this->db->update('metode_bayar');
+    }
+    
+    public function aktifkanMetodeBayar($id_metode_bayar)
+    {
+        $this->db->set('status_metode', 1);
+        $this->db->where('id_metode_bayar', $id_metode_bayar);
+        $this->db->update('metode_bayar');
+    }
+
+    public function ubahMetodeBayar($id_metode_bayar)
+    {
+        $this->db->set('metode_pembayaran', $this->input->post('metode_pembayaran'));
+        $this->db->where('id_metode_bayar', $id_metode_bayar);
+        $this->db->update('metode_bayar');
     }
 
     public function updatetransaksi($data,$id_transaksi)

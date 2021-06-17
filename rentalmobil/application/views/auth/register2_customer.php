@@ -30,8 +30,8 @@
 							<label for="name" class="form-label">Nama Lengkap</label>
 						</div>
 						<div class="col">
-							<input name="name" type="text" class="form-control" placeholder="Nama Lengkap"
-							value="<?= $customer['nama']; ?>">
+							<input name="name" type="text" class="form-control <?= form_error('nama') ? 'is-invalid' : ''; ?>"
+							placeholder="Nama Lengkap" value="<?= $customer['nama']; ?>">
 							<?= form_error('name', '<small class="form-text text-danger">', '</small>'); ?>
 						</div>
 					</div>
@@ -41,7 +41,7 @@
 							<label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
 						</div>
 						<div class="col">
-							<select name="jenis_kelamin" class="form-control" aria-label="" style="width:;">
+							<select name="jenis_kelamin" class="form-control <?= form_error('jenis_kelamin') ? 'is-invalid' : ''; ?>" aria-label="" style="width:;">
 								<option selected disabled>Pilih</option>
 								<option value="0" <?= set_value('jenis_kelamin') == '0' ? "selected" : ""; ?>>Pria</option>
 								<option value="1" <?= set_value('jenis_kelamin') == '1' ? "selected" : ""; ?>>Wanita</option>
@@ -55,8 +55,8 @@
 							<label for="alamat" class="form-label">Alamat Lengkap</label>
 						</div>
 						<div class="col">
-							<textarea name="alamat" id="alamat" class="form-control" placeholder="Alamat" cols="30"
-								rows="3"><?= set_value('alamat'); ?></textarea>
+							<textarea name="alamat" id="alamat" class="form-control <?= form_error('alamat') ? 'is-invalid' : ''; ?>"
+								placeholder="Alamat" cols="30" rows="3"><?= set_value('alamat'); ?></textarea>
 							<?= form_error('alamat', '<small class="form-text text-danger">', '</small>'); ?>
 						</div>
 					</div>
@@ -66,8 +66,8 @@
 							<label for="nik" class="form-label">NIK</label>
 						</div>
 						<div class="col">
-							<input name="nik" id="nik" type="text" class="form-control" placeholder="Nomor Induk Kependudukan"
-							value="<?= set_value('nik'); ?>">
+							<input name="nik" id="nik" type="text" class="form-control <?= form_error('nik') ? 'is-invalid' : ''; ?>"
+							placeholder="Nomor Induk Kependudukan" value="<?= set_value('nik'); ?>">
 							<?= form_error('nik', '<small class="form-text text-danger">', '</small>'); ?>
 						</div>
 					</div>
@@ -77,8 +77,8 @@
 							<label for="no_sim" class="form-label">Nomor SIM</label>
 						</div>
 						<div class="col">
-							<input name="no_sim" type="text" class="form-control" placeholder="Nomor SIM"
-							value="<?= set_value('no_sim'); ?>">
+							<input name="no_sim" type="text" class="form-control <?= form_error('no_sim') ? 'is-invalid' : ''; ?>"
+							placeholder="Nomor SIM" value="<?= set_value('no_sim'); ?>">
 							<?= form_error('no_sim', '<small class="form-text text-danger">', '</small>'); ?>
 						</div>
 					</div>
@@ -88,8 +88,8 @@
 							<label for="no_hp" class="form-label">Nomor HP</label>
 						</div>
 						<div class="col">
-							<input name="no_hp" type="text" class="form-control" placeholder="Nomor HP"
-							value="<?= set_value('no_hp'); ?>">
+							<input name="no_hp" type="text" class="form-control <?= form_error('no_hp') ? 'is-invalid' : ''; ?>"
+							placeholder="Nomor HP" value="<?= set_value('no_hp'); ?>">
 							<?= form_error('no_hp', '<small class="form-text text-danger">', '</small>'); ?>
 						</div>
 					</div>

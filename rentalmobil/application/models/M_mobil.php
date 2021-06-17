@@ -3,70 +3,96 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_mobil extends CI_Model
 {
-    public function getAllmobil()
+    // GET ALL
+    public function getAllMobil()
     {
-        return $this->db->get('mobil')->result_array();
-    }
-    
-    public function getmobilPagination($limit, $start, $keyword = null)
-    {
-        if ($keyword){
-            $this->carimobil($keyword);
-        }
-		$this->db->join('jenis_mobil','jenis_mobil.id_jenis_mobil=mobil.id_jenis_mobil','LEFT OUTER');
-		$query = $this->db->get('mobil', $limit, $start);
-        return $query->result_array();
-    }
-    
-    public function getmobilCustomerPagination($limit, $start, $keyword = null)
-    {
-        if ($keyword){
-            $this->carimobil($keyword);
-        }
-        $this->db->where('status', '1');
-		$this->db->join('jenis_mobil','jenis_mobil.id_jenis_mobil=mobil.id_jenis_mobil','LEFT OUTER');
-		$query = $this->db->get('mobil', $limit, $start);
-        return $query->result_array();
-    }
-    
-    public function getJenismobilPagination($limit, $start, $keyword = null)
-    {
-        if ($keyword){
-            $this->carijenis($keyword);
-        }
-		$query = $this->db->get('jenis_mobil', $limit, $start);
-        return $query->result_array();
-    }
-
-    public function totalRowsPagination($keyword)
-    {
-        $this->carimobil($keyword);
-        $this->db->where('status', '1');
-        $this->db->join('jenis_mobil','jenis_mobil.id_jenis_mobil=mobil.id_jenis_mobil','LEFT OUTER');
+        $this->db->select("*");
         $this->db->from('mobil');
-        return $this->db->count_all_results();
-    }
-    
-    public function totalRowsJenisPagination($keyword)
-    {
-        $this->carijenis($keyword);
-        $this->db->from('jenis_mobil');
-        return $this->db->count_all_results();
+        $this->db->join('seri','seri.id_seri=mobil.id_seri','LEFT OUTER');
+        $this->db->join('merk','merk.id_merk=seri.id_merk','LEFT OUTER');
+        $this->db->join('jenis_mobil','jenis_mobil.id_jenis=mobil.id_jenis','LEFT OUTER');
+        $query = $this->db->get();
+        return $query->result_array();
     }
 
-    public function getmobilById($id_mobil)
+    public function getAllJenisMobil()
     {
-        $this->db->join('jenis_mobil','jenis_mobil.id_jenis_mobil=mobil.id_jenis_mobil','LEFT OUTER');
+		$this->db->select('*');
+		$this->db->from('jenis_mobil');
+		$query = $this->db->get();
+		return $query->result_array();
+    } 
+    
+    public function getAllJenisNonaktif()
+    {
+        $this->db->join('jenis_mobil','jenis_mobil.id_jenis=mobil.id_jenis','LEFT OUTER');
+        $this->db->where('status_jenis', 0);
+		$this->db->from('mobil');
+		$query = $this->db->get();
+		return $query->row_array();
+    } 
+    
+    public function getAllMerkMobil()
+    {
+		$this->db->select('*');
+		$this->db->from('merk');
+		$query = $this->db->get();
+		return $query->result_array();
+    }
+    
+    public function getAllSeriMobil()
+    {
+		$this->db->select('*');
+		$this->db->from('seri');
+        $this->db->join('merk','merk.id_merk=seri.id_merk','LEFT OUTER');
+		$query = $this->db->get();
+		return $query->result_array();
+    }
+
+    // GET BY ID
+    public function getMobilById($id_mobil)
+    {
+        $this->db->join('seri','seri.id_seri=mobil.id_seri','LEFT OUTER');
+        $this->db->join('merk','merk.id_merk=seri.id_merk','LEFT OUTER');
+        $this->db->join('jenis_mobil','jenis_mobil.id_jenis=mobil.id_jenis','LEFT OUTER');
         $this->db->where('id_mobil', $id_mobil);
         return $this->db->get('mobil')->row_array();
     }
     
-    public function getJenisById($id_jenis_mobil)
+    public function getMobilByJenis($id_jenis)
     {
-        $this->db->where('id_jenis_mobil', $id_jenis_mobil);
-        return $this->db->get('jenis_mobil')->row_array();
+        $this->db->join('seri','seri.id_seri=mobil.id_seri','LEFT OUTER');
+        $this->db->join('merk','merk.id_merk=mobil.id_merk','LEFT OUTER');
+        $this->db->join('jenis_mobil','jenis_mobil.id_jenis=mobil.id_jenis','LEFT OUTER');
+        $this->db->where('id_jenis', $id_jenis);
+        return $this->db->get('mobil')->row_array();
     }
 
+    public function getJenisById($id_jenis)
+    {
+        $this->db->where('id_jenis', $id_jenis);
+        return $this->db->get('jenis_mobil')->row_array();
+    }
+    
+    public function getSeriById($id_seri)
+    {
+        $this->db->where('id_seri', $id_seri);
+        return $this->db->get('seri')->row_array();
+    }
+    
+    public function getSeriByMerk($id_merk)
+    {
+        $this->db->where('id_merk', $id_merk);
+        return $this->db->get('seri')->row_array();
+    }
+    
+    public function getMerkById($id_merk)
+    {
+        $this->db->where('id_merk', $id_merk);
+        return $this->db->get('merk')->row_array();
+    }
+
+    // GET COUNT
     public function getmobilCountByJenis($id_jenis_mobil)
     {
         $this->db->where('id_jenis_mobil', $id_jenis_mobil);
@@ -74,63 +100,83 @@ class M_mobil extends CI_Model
         return $this->db->count_all_results();
     }
 
-    public function getAllmobilAndJenis()
-    {
-		$this->db->select('*');
-		$this->db->from('mobil');
-		$this->db->join('jenis_mobil','jenis_mobil.id_jenis_mobil=mobil.id_jenis_mobil','LEFT OUTER');
-		$query = $this->db->get();
-		return $query->result_array();
-    }
-    
-    public function getAllJenis()
-    {
-		$this->db->select('*');
-		$this->db->from('jenis_mobil');
-		$query = $this->db->get();
-		return $query->result_array();
-    }
-
-    public function countAllmobil()
+    public function countAllMobil()
     {
         return $this->db->get('mobil')->num_rows();
     }
     
-    public function hapusmobil($id_mobil)
+    // HAPUS
+    public function nonaktifkanmobil($id_mobil)
     {
+        $this->db->set('status_pinjaman', 0);
         $this->db->where('id_mobil', $id_mobil);
-        return $this->db->delete('mobil');
-    }
-
-    public function hapusmobilboongan()
-    {
-        return $data = ['status'       => 0];
-    }
-
-     public function hapusJenismobil($id_jenis_mobil)
-    {
-        $this->db->where('id_jenis_mobil', $id_jenis_mobil);
-        return $this->db->delete('jenis_mobil');
-    }
-
-    public function carimobil($keyword)
-    {
-        $this->db->like('kode_mobil', $keyword);
-        $this->db->or_like('nama_mobil', $keyword);
-        $this->db->or_like('harga', $keyword);
-        $this->db->or_like('stok', $keyword);
-        $this->db->or_like('bentuk', $keyword);
-        $this->db->or_like('fungsi', $keyword);
-        $this->db->or_like('aturan', $keyword);
-        $this->db->or_like('nama_jenis', $keyword);
+        $this->db->update('mobil');
     }
     
-    public function carijenis($keyword)
+    public function aktifkanmobil($id_mobil)
     {
-        $this->db->like('id_jenis_mobil', $keyword);
-        $this->db->or_like('nama_jenis', $keyword);
+        $this->db->set('status_pinjaman', 2);
+        $this->db->where('id_mobil', $id_mobil);
+        $this->db->update('mobil');
     }
 
+    public function nonaktifkanserimobil($id_seri)
+    {
+        $this->db->set('status_pinjaman', 0);
+        $this->db->where('id_seri', $id_seri);
+        $this->db->update('mobil');
+        $this->db->set('status_seri', 0);
+        $this->db->where('id_seri', $id_seri);
+        $this->db->update('seri');
+    }
+    
+    public function aktifkanserimobil($id_seri)
+    {
+        $this->db->set('status_pinjaman', 2);
+        $this->db->where('id_seri', $id_seri);
+        $this->db->update('mobil');
+        $this->db->set('status_seri', 1);
+        $this->db->where('id_seri', $id_seri);
+        $this->db->update('seri');
+    }
+
+    public function nonaktifkanmerkmobil($id_merk, $id_seri)
+    {
+        $this->nonaktifkanserimobil($id_seri);
+        $this->db->set('status_merk', 0);
+        $this->db->where('id_merk', $id_merk);
+        $this->db->update('merk');
+    }
+    
+    public function aktifkanmerkmobil($id_merk, $id_seri)
+    {
+        $this->aktifkanserimobil($id_seri);
+        $this->db->set('status_merk', 1);
+        $this->db->where('id_merk', $id_merk);
+        $this->db->update('merk');
+    }
+
+    public function nonaktifkanjenismobil($id_jenis)
+    {
+        $this->db->set('status_pinjaman', 0);
+        $this->db->where('id_jenis', $id_jenis);
+        $this->db->update('mobil');
+        $this->db->set('status_jenis', 0);
+        $this->db->where('id_jenis', $id_jenis);
+        $this->db->update('jenis_mobil');
+    }
+    
+    public function aktifkanjenismobil($id_jenis)
+    {
+        $this->db->set('status_pinjaman', 2);
+        $this->db->where('id_jenis', $id_jenis);
+        $this->db->update('mobil');
+        $this->db->set('status_jenis', 1);
+        $this->db->where('id_jenis', $id_jenis);
+        $this->db->update('jenis_mobil');
+    }
+
+    // UPDATE
     public function editdatamobil($new_image)
     {
         return $data = [
@@ -147,19 +193,92 @@ class M_mobil extends CI_Model
         ];
     }
 
-    public function adddatamobil($new_image)
+    public function editdatajenismobil()
+    {
+        return $data = [
+            'id_jenis_mobil' => $this->input->post('id_jenis_mobil'),
+            'nama_jenis' => $this->input->post('nama_jenis')
+        ];
+    }
+
+    public function updatemerkmobil($id_merk)
+    {
+        $this->db->set('nama_merk', $this->input->post('nama_merk'));
+        $this->db->where('id_merk', $id_merk);
+        $this->db->update('merk');
+    }
+    
+    public function updateserimobil($id_seri)
     {
         $data = [
-            'kode_mobil'         => $this->input->post('kode_mobil'),
-            'nama_mobil'         => $this->input->post('nama_mobil'),
-            'harga'             => $this->input->post('harga'),
-            'stok'              => $this->input->post('stok'),
-            'bentuk'            => $this->input->post('bentuk'),
-            'fungsi'            => $this->input->post('fungsi'),
-            'aturan'            => $this->input->post('aturan'),
-            'gambar'            => $new_image,
-            'id_jenis_mobil'     => $this->input->post('id_jenis_mobil'),
-            'status'            => $this->input->post('status')
+            'id_merk'   => $this->input->post('id_merk'),
+            'nama_seri' => $this->input->post('nama_seri'),
+        ];
+        $this->db->set($data);
+        $this->db->where('id_seri', $id_seri);
+        $this->db->update('seri');
+    }
+    
+    public function updatejenismobil($id_jenis)
+    {
+        $this->db->set('nama_jenis', $this->input->post('nama_jenis'));
+        $this->db->where('id_jenis', $id_jenis);
+        $this->db->update('jenis_mobil');
+    }
+
+    public function updatemobil($foto, $id_mobil)
+    {
+        $data = [
+            'id_seri'       => htmlspecialchars($this->input->post('id_seri')),
+            'id_jenis'      => htmlspecialchars($this->input->post('id_jenis')),
+            'warna'         => htmlspecialchars($this->input->post('warna')),
+            'tahun'         => htmlspecialchars($this->input->post('tahun')),
+            'plat_nomor'    => htmlspecialchars(strtoupper($this->input->post('plat_nomor'))),
+            'nomor_rangka'  => htmlspecialchars(strtoupper($this->input->post('nomor_rangka'))),
+            'nomor_mesin'   => htmlspecialchars(strtoupper($this->input->post('nomor_mesin'))),
+            'harga'         => htmlspecialchars($this->input->post('harga')),
+            'foto_mobil'    => $foto,
+            'status_pinjaman' => 2,
+        ];
+
+        $this->db->set($data);
+        $this->db->where('id_mobil', $id_mobil);
+        $this->db->update('mobil');
+    }
+
+    // ADD DATA
+    public function tambahmobil($foto_mobil)
+    {
+        $data = [
+            'id_mobil'      => random_string('alnum', 5),
+            'id_seri'       => htmlspecialchars($this->input->post('id_seri')),
+            'id_jenis'      => htmlspecialchars($this->input->post('id_jenis')),
+            'warna'         => htmlspecialchars($this->input->post('warna')),
+            'tahun'         => htmlspecialchars($this->input->post('tahun')),
+            'plat_nomor'    => htmlspecialchars(strtoupper($this->input->post('plat_nomor'))),
+            'nomor_rangka'  => htmlspecialchars(strtoupper($this->input->post('nomor_rangka'))),
+            'nomor_mesin'   => htmlspecialchars(strtoupper($this->input->post('nomor_mesin'))),
+            'harga'         => htmlspecialchars($this->input->post('harga')),
+            'foto_mobil'    => $foto_mobil,
+            'status_pinjaman' => 2,
+        ];
+        $this->db->insert('mobil', $data);
+    }
+    
+    public function tambahmobildefault()
+    {
+        $data = [
+            'id_mobil'      => random_string('alnum', 5),
+            'id_seri'       => htmlspecialchars($this->input->post('id_seri')),
+            'id_jenis'      => htmlspecialchars($this->input->post('id_jenis')),
+            'warna'         => htmlspecialchars($this->input->post('warna')),
+            'tahun'         => htmlspecialchars($this->input->post('tahun')),
+            'plat_nomor'    => htmlspecialchars(strtoupper($this->input->post('plat_nomor'))),
+            'nomor_rangka'  => htmlspecialchars(strtoupper($this->input->post('nomor_rangka'))),
+            'nomor_mesin'   => htmlspecialchars(strtoupper($this->input->post('nomor_mesin'))),
+            'harga'         => htmlspecialchars($this->input->post('harga')),
+            'foto_mobil'    => 'default.jpeg',
+            'status_pinjaman' => 2,
         ];
         $this->db->insert('mobil', $data);
     }
@@ -172,30 +291,32 @@ class M_mobil extends CI_Model
         ];
         $this->db->insert('jenis_mobil', $data);
     }
-
-    public function editdatajenismobil()
+    
+    public function tambahmerkmobil()
     {
-        return $data = [
-            'id_jenis_mobil' => $this->input->post('id_jenis_mobil'),
-            'nama_jenis' => $this->input->post('nama_jenis')
+        $data = [
+            'nama_merk' => $this->input->post('nama_merk'),
+            'status_merk' => 1
         ];
+        $this->db->insert('merk', $data);
     }
-
-    public function updatemobil($data,$id_mobil)
+    
+    public function tambahjenismobil()
     {
-        $this->db->set($data);
-        $this->db->where('id_mobil', $id_mobil);
-        $this->db->update('mobil');
+        $data = [
+            'nama_jenis' => $this->input->post('nama_jenis'),
+            'status_jenis' => 1
+        ];
+        $this->db->insert('jenis_mobil', $data);
     }
-
-    public function updateJenismobil($data,$id_jenis_mobil)
+    
+    public function tambahserimobil()
     {
-        $this->db->set($data);
-        $this->db->where('id_jenis_mobil', $id_jenis_mobil);
-        $this->db->update('jenis_mobil');
-    }
-    public function updateStokmobil($id, $stok)
-    {
-        $this->db->query("UPDATE `mobil` SET `stok` = ".$stok." WHERE `mobil`.`id_mobil` = ".$id.";");
+        $data = [
+            'id_merk' => $this->input->post('id_merk'),
+            'nama_seri' => $this->input->post('nama_seri'),
+            'status_seri' => 1
+        ];
+        $this->db->insert('seri', $data);
     }
 }

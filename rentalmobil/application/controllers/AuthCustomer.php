@@ -128,20 +128,23 @@ class AuthCustomer extends CI_Controller
         $this->form_validation->set_rules('alamat', 'Alamat', 'required|trim', [
             'required' => 'Kolom Alamat harus dilengkapi.'
         ]);
-        $this->form_validation->set_rules('nik', 'NIK', 'required|trim|min_length[16]|numeric', [
+        $this->form_validation->set_rules('nik', 'NIK', 'required|trim|min_length[16]|numeric|is_unique[customer.nik]', [
             'required' => 'Kolom NIK harus diisi.',
             'min_length' => "NIK minimal 16 karakter.",
-            'numeric' => "Kolom NIK harus berisi angka."
+            'numeric' => "Kolom NIK harus berisi angka.",
+            'is_unique' => 'Akun dengan NIK ini telah terdaftar!'
         ]);
-        $this->form_validation->set_rules('no_sim', 'Nomor SIM', 'required|trim|min_length[12]|numeric', [
+        $this->form_validation->set_rules('no_sim', 'Nomor SIM', 'required|trim|min_length[12]|numeric|is_unique[customer.no_sim]', [
             'required' => 'Kolom Nomor SIM harus diisi.',
             'min_length' => "Nomor SIM minimal 12 karakter.",
-            'numeric' => "Kolom Nomor SIM harus berisi angka."
+            'numeric' => "Kolom Nomor SIM harus berisi angka.",
+            'is_unique' => 'Akun dengan Nomor SIM ini telah terdaftar!'
         ]);
-        $this->form_validation->set_rules('no_hp', 'Nomor HP', 'required|trim|min_length[10]|numeric', [
+        $this->form_validation->set_rules('no_hp', 'Nomor HP', 'required|trim|min_length[10]|numeric|is_unique[customer.no_hp]', [
             'required' => 'Kolom Nomor HP harus diisi.',
             'min_length' => "Nomor HP minimal 10 karakter.",
-            'numeric' => "Kolom Nomor HP harus berisi angka."
+            'numeric' => "Kolom Nomor HP harus berisi angka.",
+            'is_unique' => 'Akun dengan Nomor HP ini telah terdaftar!'
         ]);
         if (empty($_FILES['foto_kk']['name']))
         {
@@ -264,7 +267,9 @@ class AuthCustomer extends CI_Controller
                 }
 
                 $email = $this->session->userdata('email');
-                $this->m_auth_customer->regdata2($fotokk, $fotoktp, $fotoselfiektp, $fotosim, $email);
+                $customer = $this->m_auth_customer->getCustomer($email);
+                $id_customer = $customer['id_customer'];
+                $this->m_auth_customer->regdata2($fotokk, $fotoktp, $fotoselfiektp, $fotosim, $id_customer);
                 
             } else{
                 // echo "gamasuk";die;

@@ -49,6 +49,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'customer';
-$route['404_override'] = '';
-$route['translate_uri_dashes'] = FALSE;
+$route['default_controller']            = 'customer';
+$route['404_override']                  = '';
+$route['translate_uri_dashes']          = FALSE;
+
+$route['pegawai/pemimpin']              = 'pemimpin';
+$route['pegawai/admin']                 = 'admin';
+
+$route['pegawai/datapegawai']           = 'pegawai';
+$route['pegawai/datapegawai/tambah']    = 'pegawai/tambahPegawai';
+$route['pegawai/datapegawai/jabatan']   = 'pegawai/dataRole';
+
+$route['pegawai/datamobil']             = 'mobil';
+$route['pegawai/datamobil/tambah']      = 'mobil/tambahMobil';
+$route['pegawai/datamobil/ubah/(:any)'] = 'mobil/editmobil/$1';
+$route['pegawai/datamobil/merkseri']    = 'mobil/merkserimobil';
+$route['pegawai/datamobil/jenis']       = 'mobil/jenismobil';
+
+$route['pegawai/datatransaksi']             = 'transaksi/dataTransaksi';
+$route['pegawai/datatransaksi/metodebayar'] = 'transaksi/dataMetodeBayar';
+// $route['pegawai/datatransaksi/metodebayar/hapus/(:num)']   = 'transaksi/dataMetodeBayar/hapusMetodeBayar';
+
+$route['pegawai/datacustomer']          = 'customerData';
+$route['pegawai/datacustomer/verifikasi/(:any)'] = 'customerData/verifikasiCustomer/$1';

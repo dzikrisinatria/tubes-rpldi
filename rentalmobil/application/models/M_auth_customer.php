@@ -47,7 +47,7 @@ class M_auth_customer extends CI_Model
         $this->db->insert('customer', $data);
     }
 
-    public function regdata2($fotokk, $fotoktp, $fotoselfiektp, $fotosim, $email)
+    public function regdata2($fotokk, $fotoktp, $fotoselfiektp, $fotosim, $id_customer)
     {
         $data = [
             'nama'          => htmlspecialchars($this->input->post('name', true)),
@@ -64,7 +64,7 @@ class M_auth_customer extends CI_Model
         ];
 
         $this->db->set($data);
-        $this->db->where('email', $email);
+        $this->db->where('id_customer', $id_customer);
         $this->db->update('customer');
     }
 

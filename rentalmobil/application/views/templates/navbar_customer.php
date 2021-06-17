@@ -41,7 +41,7 @@
                                     <!-- <img class="rounded-circle mx-2 bg-light" height="35px" width="35px"
                                         src="<?= base_url('assets/img/profile/') . $customer['foto']; ?>"> -->
                                     <img class="rounded-circle mx-2 bg-light" height="35px" width="35px"
-                                        src="<?= base_url('assets/images/profilephoto.png')?>">
+                                        src="<?= base_url('assets/images/foto_profil/default.png')?>">
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="<?= base_url('customer/profile'); ?>">Akun Saya</a>
